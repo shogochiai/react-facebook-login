@@ -67,6 +67,12 @@ class FacebookLogin extends React.Component {
   };
 
   componentDidMount() {
+    if (document.getElementById('facebook-jssdk')) {
+      this.sdkLoaded();
+      return;
+    }
+    this.setFbAsyncInit();
+    this.loadSdkAsynchronously();
     let fbRoot = document.getElementById('fb-root');
     if (!fbRoot) {
       fbRoot = document.createElement('div');
@@ -74,13 +80,6 @@ class FacebookLogin extends React.Component {
       document.body.appendChild(fbRoot);
     }
     this._isMounted = true;
-
-    if (document.getElementById('facebook-jssdk')) {
-      this.setStateIfMounted({ isSdkLoaded: true });
-      return;
-    }
-    this.setFbAsyncInit();
-    this.loadSdkAsynchronously();
   }
 
   componentWillUnmount() {
