@@ -67,6 +67,7 @@ class FacebookLogin extends React.Component {
   };
 
   componentDidMount() {
+    this._isMounted = true;
     if (document.getElementById('facebook-jssdk')) {
       this.sdkLoaded();
       return;
@@ -79,7 +80,6 @@ class FacebookLogin extends React.Component {
       fbRoot.id = 'fb-root';
       document.body.appendChild(fbRoot);
     }
-    this._isMounted = true;
   }
 
   componentWillUnmount() {
@@ -133,7 +133,8 @@ class FacebookLogin extends React.Component {
   };
 
   checkLoginState = (response) => {
-    this.setStateIfMounted({ isProcessing: false });
+    if (!this._isMounted) { return; }
+    this.setState({ isProcessing: false });
     if (response.authResponse) {
       this.responseApi(response.authResponse);
     } else {
