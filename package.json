@@ -1,6 +1,6 @@
 {
   "name": "react-facebook-login",
-  "version": "3.5.0",
+  "version": "1.0.3",
   "description": "A Component React for Facebook Login",
   "main": "dist/facebook-login.js",
   "scripts": {
@@ -60,6 +60,8 @@
       "react",
       "stage-0"
     ],
-    "plugins": ["transform-object-assign"]
+    "plugins": [
+      "transform-object-assign"
+    ]
   }
 }
